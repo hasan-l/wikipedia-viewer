@@ -1,0 +1,151 @@
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+body{
+	background-image: url('../img/pink.jpg');
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: 'PT Sans', sans-serif;
+}
+
+.search-container{
+    margin: 0 auto; 
+    transform: translateY(40vh);
+    width: 400px;
+    text-align: center;
+    padding: 15px;
+	transition: all 0.3s ease-in-out;
+}
+
+/*added via Jquery on click*/
+.push-up-search{
+	transform: translateY(5vh);
+	transition: all 0.7s ease-out;
+}
+
+a.link, a.link:visited{
+	text-decoration: none;
+	color: #fff;
+}
+
+a.link:hover{
+	color:  rgba(226, 148, 112, 1);
+	text-decoration: none;
+}
+
+/*mini-reset*/
+input, input:active, input:hover {
+    border: 0;
+    outline: none;
+}
+
+input {
+	margin: 0 auto;
+	position: relative;
+	padding: 5px;
+}
+
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+.search-field{
+	margin: 0 auto; 
+	width: 300px;
+	margin-top: 15px;
+	background-color: #fff;
+	border-radius: 4px;
+}
+
+input#search-text{
+	width: 90%;
+	height: 30px;
+}
+
+button#search-cancel{
+	background-color: rgba(226, 148, 112, 1);
+	height: 30px;
+	width: 30px;
+	color: #fff;
+}
+
+button#search-cancel:hover{
+	cursor: pointer;
+	color: #7f345a;
+}
+
+button, button:active, button:hover{
+	border: 0;
+    outline: none;
+}
+
+button.submit-btn{
+	margin-top: 15px;
+	padding: 10px 20px;
+	border-radius: 3px;
+	box-shadow: 0 7px #a8a8a8;
+	font-family: 'PT Sans Narrow', sans-serif;
+	background-color: #fff;
+	color:  #4c1f24;
+}
+
+button.submit-btn:hover{
+	cursor: pointer;
+}
+
+button.submit-btn:active{
+	transform: translateY(6px);
+	box-shadow: 0 2px #666;
+}
+
+.results-container{
+	transform: translateY(40vh);
+	opacity: 0;
+	width: 80%;
+	margin: 0px auto;
+	margin-bottom: 50px;
+}
+
+.results-container a, .results-container a:visited, .results-container a:hover{
+	text-decoration: none;
+	color: #000;
+}
+.results-container a{
+	position: relative;
+}
+
+/*added via Jquery on click*/
+.push-up-results{
+	transform: translateY(5vh);
+	transition: all 0.7s ease-out;
+	opacity: 1;
+}
+
+.result-pane{
+	background-color: rgba(255, 255, 255, 0.9);
+	min-height: 140px;	
+	margin-top: 10px;
+	padding: 10px 36px 30px 27px;
+	overflow:auto;
+	position: relative;
+}
+
+.result-pane:after{
+	content: "";
+	transition:0.9s all ease;
+	position:absolute;
+	bottom:0;
+	height:0.45rem;
+	width:0;
+	background-color:rgba(226, 148, 112, 1);
+	left:0;
+}
+.result-pane:hover:after{
+	width:100%;
+}
