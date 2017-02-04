@@ -20,12 +20,14 @@ body{
     width: 400px;
     text-align: center;
     padding: 15px;
+    -webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
 
 /*added via Jquery on click*/
 .push-up-search{
 	transform: translateY(5vh);
+	-webkit-transition: all 0.7s ease-out;
 	transition: all 0.7s ease-out;
 }
 
@@ -123,6 +125,7 @@ button.submit-btn:active{
 /*added via Jquery on click*/
 .push-up-results{
 	transform: translateY(5vh);
+	-webkit-transition: all 0.7s ease-out;
 	transition: all 0.7s ease-out;
 	opacity: 1;
 }
@@ -138,14 +141,15 @@ button.submit-btn:active{
 
 .result-pane:after{
 	content: "";
-	transition:0.9s all ease;
-	position:absolute;
-	bottom:0;
-	height:0.45rem;
-	width:0;
-	background-color:rgba(226, 148, 112, 1);
-	left:0;
+	-webkit-transition: 0.9s all ease;
+	transition: 0.9s all ease;
+	position: absolute;
+	bottom: 0;
+	height: 0.45rem;
+	width: 0;
+	background-color: rgba(226, 148, 112, 1);
+	left: 0;
 }
 .result-pane:hover:after{
-	width:100%;
+	width: 100%;
 }
