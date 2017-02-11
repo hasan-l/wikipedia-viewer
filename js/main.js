@@ -5,7 +5,9 @@ $(document).ready(function(){
 	resultsContainer.hide();
 
 	$('.submit-btn').click(function(){
-
+		$('.result-pane div').empty();
+		$('.result-pane h3').empty();
+		
 		if($('#search-text').val() !== ''){
 			resultsContainer.show();
 	   		searchContainer.addClass('push-up-search');
@@ -16,6 +18,7 @@ $(document).ready(function(){
    			var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + title + '&limit=9&format=json&callback=?';
    			$.getJSON(wikiUrl, processResult);
    		}
+
 	});
 
 	function processResult(apiResult){
