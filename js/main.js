@@ -13,7 +13,8 @@ $(document).ready(function(){
 			setTimeout(function(){resultsContainer.addClass('push-up-results');}, 50);
 
    			var title = $('#search-text').val();
-   			$.getJSON('https://en.wikipedia.org/w/api.php?action=opensearch&search=' + title + '&limit=9&format=json&callback=?', processResult);
+   			var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + title + '&limit=9&format=json&callback=?';
+   			$.getJSON(wikiUrl, processResult);
    		}
 	});
 
