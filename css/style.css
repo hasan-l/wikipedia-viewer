@@ -4,7 +4,6 @@
 	box-sizing: border-box;
 }
 
-
 body{
 	background-image: url('../img/pink.jpg');
 	margin: 0;
@@ -24,19 +23,19 @@ body{
 	transition: all 0.3s ease-in-out;
 }
 
-/*added via Jquery on click*/
-.push-up-search{
+/*added via Jquery on submit-btn click*/
+.push-up-search-container{
 	transform: translateY(5vh);
 	-webkit-transition: all 0.7s ease-out;
 	transition: all 0.7s ease-out;
 }
 
-a.link, a.link:visited{
+a.link-random, a.link-random:visited{
 	text-decoration: none;
 	color: #fff;
 }
 
-a.link:hover{
+a.link-random:hover{
 	color:  rgba(226, 148, 112, 1);
 	text-decoration: none;
 }
@@ -122,8 +121,8 @@ button.submit-btn:active{
 	position: relative;
 }
 
-/*added via Jquery on click*/
-.push-up-results{
+/*added via Jquery on submit-btn click*/
+.push-up-results-container{
 	transform: translateY(5vh);
 	-webkit-transition: all 0.7s ease-out;
 	transition: all 0.7s ease-out;
@@ -152,4 +151,11 @@ button.submit-btn:active{
 }
 .result-pane:hover:after{
 	width: 100%;
+}
+
+@media screen and (max-width: 720px) {
+
+	.results-container{
+		width: 90%;
+	}
 }

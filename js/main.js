@@ -1,55 +1,73 @@
-$(document).ready(function(){
+var WikipediaViewer = function(){
+	//cached jQuery objects
+	var $searchContainer = $('.search-container');
+	var $resultsContainer = $('.results-container');
+	var $submitBtn = $('.submit-btn');
+	var $searchText = $('#search-text');
+	var $searchResultSnippet = $('.search-result-snippet');
+	var $resultHeader = $('.result-header');
+	var $resultLink = $('.result-link');
+	var $searchCancelBtn = $("#search-cancel");
 
-	var searchContainer = $('.search-container');
-	var resultsContainer = $('.results-container');
-	resultsContainer.hide();
-
-	$('.submit-btn').click(function(){
-		$('.result-pane div').empty();
-		$('.result-pane h3').empty();
+	$submitBtn.click(function(){
+		//reset search results
+		$searchResultSnippet.empty();
+		$resultHeader.empty();
+		$resultLink.attr('href', '');
 		
-		if($('#search-text').val() !== ''){
-			resultsContainer.show();
-	   		searchContainer.addClass('push-up-search');
-			resultsContainer.removeClass('push-up-results');
-			setTimeout(function(){resultsContainer.addClass('push-up-results');}, 50);
+		if($searchText.val() !== ''){
+			$resultsContainer.show();
+			//pushes search-container to the top
+	   		$searchContainer.addClass('push-up-search-container');
+	   		//results-container pushed right to the top right below search after short delay
+			$resultsContainer.removeClass('push-up-results-container');
+			setTimeout(function(){$resultsContainer.addClass('push-up-results-container');}, 50);
 
-   			var title = $('#search-text').val();
-   			var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + title + '&limit=9&format=json&callback=?';
+   			var userInput = $searchText.val();
+   			//Data to be sent to the server appended to URL as query string
+   			var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + userInput + '&limit=9&format=json&callback=?';
+   			//loads JSON data from server using a HTTP GET request. 
    			$.getJSON(wikiUrl, processResult);
    		}
 
 	});
 
-	function processResult(apiResult){
-		var resultPaneDiv = $('.result-pane div');
-		var resultPaneHeading = $('.result-pane h3');
-		var resultLink = $('.result-link');
-
+	//callback passed returned data
+	function processResult(data){
+		console.log(data);
 		for(var i = 0; i < 9; i++){
-			resultPaneHeading.eq(i).text(apiResult[1][i]);
-			resultPaneDiv.eq(i).html(apiResult[2][i]);
-			resultLink.eq(i).attr('href', apiResult[3][i]);
+			//update results section
+			$resultHeader.eq(i).text(data[1][i]);
+			$searchResultSnippet.eq(i).html(data[2][i]);
+			$resultLink.eq(i).attr('href', data[3][i]);
 		}
 	}
 
-	//add return key listener to trigger button click
-	var searchTxt = document.getElementById("search-text");
-	searchTxt.addEventListener("keyup", function(event){
+	//add 'return' key listener to trigger button click
+	$searchText.keyup(function(event){
 		event.preventDefault();
 		if(event.keyCode === 13){
-			document.querySelector(".submit-btn").click();
+			$submitBtn.click();
 		}
 	});
 
 	//reset position
-	var searchCancelBtn = document.getElementById("search-cancel");
-	searchCancelBtn.addEventListener("click", function(){
-		searchContainer.removeClass('push-up-search');
-		resultsContainer.removeClass('push-up-results');
-		resultsContainer.hide();
+	$searchCancelBtn.click( function(){
+		$searchContainer.removeClass('push-up-search-container');
+		$resultsContainer.removeClass('push-up-results-container');
+		$resultsContainer.hide();
+		$searchText.val('');
+	});
 
-		searchTxt.value = "";
-	}, false);
+	function init(){
+		$resultsContainer.hide();
+	}
 
+	return{
+		init: init
+	}
+}();
+
+$(document).ready(function(){
+	WikipediaViewer.init();
 });
